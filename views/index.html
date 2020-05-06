@@ -1,0 +1,62 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+<link rel="stylesheet" href="/static/materialize/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <div class='container'>
+	<div class=' card row cyan lighten-4' >
+	  <form method='post' class="card-content col s12" action='/'>
+	    <span class="card-title">Movie Search</span>
+
+	    <div class="row">
+              <div class="input-field col s10">
+		<input placeholder="Search for a Movie" id="movie_name" name="movie_name" type="text" class="validate">
+	      </div>
+	       <div class="input-field col s2">
+		<input class="waves-effect waves-light btn-small" type="submit" class="validate">
+	      </div>
+	     </div>
+	  </form>
+	</div>
+
+	% if movies:
+	  % for movie_id, movie in movies.items():
+	     % if movie_id % 3 == 0:
+	        % if movie_id > 0:
+	          </div>
+            	% end
+	        <div class='row'>
+	     % end
+	     <div class='col m4'>
+	  <div class='card'>
+	      <div class='card-image'>
+		   <img src='{{movie['Poster']}}'>
+	      </div>
+	      	    <div class='card-content'>
+		      <span class='card-title'>{{movie['Title']}}</span>
+		      % for genre in movie['Genre']:
+		      <div class='chip'>
+			{{genre}}
+		      </div>		      
+		      % end
+
+		      <table>
+			<tr><td>Director</td><td>{{movie['Director']}}</td></tr>
+			<tr><td>Cast</td><td>{{movie['Actors']}}</td></tr>
+			<tr><td>Rating</td><td><div class='progress'><div class='determinate' style='width:{{movie['imdbRating']}}'></div></div></td></tr>
+
+		      </table>
+		      
+
+	    </div>
+	  </div>
+	  </div>
+	% end
+	% end 
+      </div>
+    </body>
+  </html>
+        
